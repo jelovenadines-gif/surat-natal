@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Christmas to u!</title>
+
+<style>
+body {
+    font-family: 'Georgia', serif;
+    background-color: #800020;
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    background: #ffffff;
+    padding: 28px;
+    border-radius: 18px;
+    width: 90%;
+    max-width: 460px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+}
+
+h1 {
+    color: #800020;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    margin: 16px 0;
+    font-size: 16px;
+}
+
+button {
+    background-color: #0b5d1e;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 999px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0f7a29;
+}
+
+.surat {
+    text-align: left;
+    margin-top: 20px;
+    line-height: 1.7;
+    white-space: pre-wrap;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+    <h1>🎄 Merry Christmas</h1>
+    <p>masukin nama kamu ya 🤍</p>
+
+    <input type="text" id="namaInput" placeholder="contoh: Kimberly">
+    <button onclick="tampilkanSurat()">buka surat</button>
+
+    <div id="hasil" class="surat"></div>
+</div>
+
+<script>
+// ================= TEMPLATE AKRAB =================
+function templateAkrab(nama) {
+return `
+Hi ${nama} 🤍
+
+Christmas feels warmer with you around.
+
+Thank you for the laughs, the talks,
+and all the little moments we share.
+
+Can’t wait to make more memories together.
+you’re appreciated more than you know 🤍
+
+Merry Christmas 🎄
+`;
+}
+
+// ================= TEMPLATE BTC =================
+function templateBTC(nama, personal) {
+return `
+Hi ${nama},
+
+Merry Christmas! 🤍
+Natal selalu jadi momen buat pause sebentar dan look back,
+ngeliat semua proses, tawa, capek, dan hal-hal kecil
+yang ternyata Tuhan pakai buat bentuk kita.
+
+thank you for choosing to stay,
+for showing up even when it wasn’t always easy,
+and for walking this journey together in BTC.
+every effort, every prayer, every step truly matters.
+${personal}
+
+i truly believe God is working beautifully in your life.
+jadi jangan ragu, jangan minder, dan jangan ngerasa sendirian.
+we grow, we learn, and we walk together 🤍
+i can’t wait to experience 2026 with you,
+growing, serving, and walking in His plan.
+
+remember, kamu selalu punya aku sebagai kakak.
+don’t be afraid, i’ve got you 🤍
+
+Merry Christmas 🎄
+`;
+}
+
+// ================= TEMPLATE AUNTY =================
+function templateAunty(nama) {
+return `
+Hi Aunty ${nama},
+
+Selamat Hari Natal yaa 🤍
+Thank you for all the laughs and every saran
+yang aunty kasih ke aku selama ini.
+it really means a lot to me.
+
+Kiranya damai dan sukacita Natal
+selalu memenuhi hati aunty dan keluarga.
+
+Merry Christmas from lovely Jelove 🎄
+`;
+}
+
+// ================= TEMPLATE UNCLE =================
+function templateUncle(nama) {
+return `
+Hi Om ${nama},
+
+Selamat Hari Natal yaa 🤍
+Terima kasih untuk setiap nasihat,
+dukungan, dan ketawa yang om udah kasih.
+thank you for always being so kind and supportive.
+
+Kiranya Tuhan selalu memberkati
+setiap langkah om ke depannya.
+
+Merry Christmas from lovely Jelove 🎄
+`;
+}
+
+// ================= TEMPLATE ADEK =================
+function templateAdek(nama, personal) {
+return `
+Hi ${nama},
+
+${personal}
+`;
+}
+
+// ================= DATA ORANG =================
+const dataSurat = {
+
+"charlotte": {
+  template: "templateBTC",
+  personal: "kamu tuh kocak banget 😭 jokes kita nyambung. pokoknya 2026 kita harus makin akrab yaa. ditunggu repost-repostan kocak selanjutnya ya HAHAH 🤍"
+},
+
+"kimberly": {
+  template: "templateBTC",
+  personal: "jangan takut kalau aku ajak ngobrol ya hehe. let’s get closer, pelan-pelan, ayo kita jadi lebih deket lagii 🤍"
+},
+
+"zefhan": { template: "templateBTC", personal: "" },
+
+"vania": {
+  template: "templateBTC",
+  personal: "thank you udah join BTC tahun ini ya. jangan takut buat ngomong atau ambil bagian ya vania, you’re safe here 🤍"
+},
+
+"qeren": {
+  template: "templateBTC",
+  personal: "jangan takut kalau aku ajak ngobrol ya hehe. let’s get closer, pelan-pelan, ayo kita jadi lebih deket lagii 🤍"
+},
+
+"raphael": { template: "templateBTC", personal: "" },
+"andreas": { template: "templateBTC", personal: "" },
+
+"jemima": {
+  template: "templateBTC",
+  personal: "jangan takut kalau aku ajak ngobrol ya hehe. let’s get closer, pelan-pelan, ayo kita jadi lebih deket lagii 🤍"
+},
+
+"megha": {
+  template: "templateBTC",
+  personal: "jangan takut kalau aku ajak ngobrol ya hehe. let’s get closer, pelan-pelan, ayo kita jadi lebih deket lagii 🤍"
+},
+
+"alvino": { template: "templateBTC", personal: "" },
+"joshua": { template: "templateBTC", personal: "" },
+"othniel": { template: "templateBTC", personal: "" },
+"jessica": {template: "templateBTC",personal: "jangan takut kalau aku ajak ngobrol ya hehe. let’s get closer, pelan-pelan, ayo kita jadi lebih deket lagii 🤍"
+},
+"chelsea": {
+  template: "templateBTC",
+  personal: "jangan takut kalau aku ajak ngobrol ya hehe. let’s get closer, pelan-pelan, ayo kita jadi lebih deket lagii 🤍"
+},
+
+"emily": {
+  template: "templateBTC",
+  personal: "thank you selalu siap bantuin bagi-bagi konsumsi ya emily. tahun depan lebih semangat lagi buat pelayanan ya 🤍"
+},
+
+"lv": {
+  template: "templateBTC",
+  personal: "thank you udah punya hati buat bantu BTC ya. see you calon pengurus BTC 2026 🤍"
+},
+
+"fervent": {
+  template: "templateBTC",
+  personal: "makasih yaa udah nurut kalau i suruh-suruh. jangan bandel-bandel tahun depan! u udah gede!! tahun depan siap i suruh pelayanan ini itu lagi ya. semangat calon pengurus BTC 🤍"
+},
+
+"disya": {
+  template: "templateBTC",
+  personal: ""
+},
+
+"mona": {
+  template: "templateBTC",
+  personal: ""
+},
+
+"gilbert": {
+  template: "templateBTC",
+  personal: ""
+},
+
+"felicia": {
+  template: "templateBTC",
+  personal: ""
+},
+
+"jehope": {
+  template: "templateBTC",
+  personal: "makasih udah jadi ade kaka satu-satunya yang ketemu hampir tiap hari di rumah. tahun depan kamu makin gede, makin serius kalau Tuhan panggil kamu buat pelayanan ya. kaka bangga sama kamu 🤍"
+},
+
+"melvin": {
+  template: "templateBTC",
+  personal: ""
+},
+
+"vino": {
+  template: "templateBTC",
+  personal: ""
+},
+
+"samantha": {
+  template: "templateBTC",
+  personal: "thank you udah punya hati buat bantu BTC ya. see you calon pengurus BTC 2026 🤍"
+},
+
+"audy": {
+  template: "templateBTC",
+  personal: "thank you udah punya hati buat bantu BTC ya. see you calon pengurus BTC 2026 🤍"
+},
+
+"oscar": {
+  template: "templateBTC",
+  personal: ""
+},
+
+"alvaro": {
+  template: "templateBTC",
+  personal: ""
+},
+
+"steven": {
+  template: "templateBTC",
+  personal: ""
+},
+
+"samuel": {
+  template: "templateBTC",
+  personal: ""
+},
+
+"mikaela": {
+  template: "templateBTC",
+  personal: "thank you yaa udah mau join. tahun depan lebih rajin ikut BTC yuk 🤍"
+},
+
+"yemima": {
+  template: "templateBTC",
+  personal: "thank you yaa udah mau join. tahun depan lebih rajin ikut BTC yuk 🤍"
+},
+
+"charis": {
+  template: "templateBTC",
+  personal: ""
+},
+
+"adel": {
+  template: "templateBTC",
+  personal: "thank you udah punya hati buat bantu BTC ya. see you calon pengurus BTC 2026 🤍"
+},
+
+"gita": {
+  template: "templateBTC",
+  personal: "makasih udah bantu jadi pengurus BTC selama ini ya. Tuhan yang lihat setiap hati dan proses kamu 🤍"
+},
+
+"leon": {
+  template: "templateBTC",
+  personal: "makasih udah bantu jadi pengurus BTC selama ini ya. Tuhan yang lihat setiap hati dan proses kamu 🤍"
+},
+
+"rere": {
+  template: "templateBTC",
+  personal: "makasih udah bantu jadi pengurus BTC selama ini ya. Tuhan yang lihat setiap hati dan proses kamu 🤍"
+},
+
+"jasmine": {
+  template: "templateBTC",
+  personal: "THANK GOD 2025 yang keramat ini akhirnya mau selesai HAHAHA. i love having u as my sister in Christ. kamu suportif banget, and i’m so proud of you. 2026 sering-sering pulang kesini ya, kita harus lebih sering jalan-jalan 🤍"
+},
+
+"gustaf": {
+  template: "templateBTC",
+  personal: "makasih udah bantu jadi pengurus BTC selama ini ya. Tuhan yang lihat setiap hati dan proses kamu 🤍"
+},
+
+"thalia": {
+  template: "templateBTC",
+  personal: "makasih udah bantu jadi pengurus BTC selama ini ya. Tuhan yang lihat setiap hati dan proses kamu 🤍"
+},
+
+"amos": {
+  template: "templateBTC",
+  personal: "makasih udah bantu jadi pengurus BTC selama ini ya. Tuhan yang lihat setiap hati dan proses kamu 🤍"
+},
+
+"devon": {
+  template: "templateBTC",
+  personal: "thank you udah jadi wakil gue selama ini. semangat buat next season ya. u always have me as ur big sis, walau beda 6 bulan doang HAHAHA 🤍"
+},
+
+"aldi": {
+  template: "templateBTC",
+  personal: "makasih udah bantu jadi pengurus BTC selama ini ya. Tuhan yang lihat setiap hati dan proses kamu 🤍"
+},
+
+"joash": { template: "templateAdek", personal: `makasih ya u udah tumbuh sejauh ini.
+i know kadang u bandel, kadang capek, kadang sok santai,
+but i see how God is working in your heart.
+
+i’m really proud of u.
+tahun depan jangan cuma gede badannya,
+but also grow your heart and responsibility
+
+i’ll stay cerewet, stay pushing u,
+because i believe God has something big for your life.
+siap ya, more serving next year
+
+remember, u always have i as your kakak.
+don’t be afraid 🤍
+
+Merry Christmas 🎄` },
+
+"jehope": { template: "templateAdek", personal: `makasih ya udah jadi ade yang tiap hari kaka temuin,
+yang kadang ngeselin, but mostly makes me grateful.
+
+kaka liat kok proses kamu,
+how you grow, how you respond to God.
+pelan-pelan ya, but don’t stop.
+
+kaka bangga sama kamu.
+Tuhan jalan di depanmu,
+dan kaka will always walk with you 🤍
+
+I truly believe God is working beautifully in your life.
+jadi jangan ragu, jangan minder, dan jangan ngerasa sendirian.
+we grow, we learn, and we walk together.
+I can’t wait to experience 2026 with you,
+growing, serving, and walking in His plan.
+
+Kamu selalu punya aku sebagai kakak yaa.
+don’t be afraid, i’ve got you
+
+Merry Christmas 🎄` },
+
+"carissa": { template: "templateAdek", personal: `adek kaka yang paling gede,
+makasih ya selalu bantuin kaka yaa walaupun sambil ngeluh sama muka jutek.
+
+next year kamu udah SMA, and honestly it makes me emotional(rill).
+you grow so fast, tp buat kaka, you’ll always be my little CHUBBY sister.
+
+segede apa pun kamu nanti,
+you’ll always get my hugs, my prayers, and my love. ACIKIWIRRR🤍
+
+I truly believe God is working beautifully in your life.
+jadi jangan ragu, jangan minder, dan jangan ngerasa sendirian.
+we grow, we learn, and we walk together.
+I can’t wait to experience 2026 with you,
+growing, serving, and walking in His plan.
+
+Kamu selalu punya aku sebagai kakak yaa.
+don’t be afraid, i’ve got you
+
+Merry Christmas 🎄` },
+
+"charles": { template: "templateAdek", personal: `makasih ya selalu nurut sama kaka,
+even when you joke too much 😌
+
+maaf yaa kalau kaka suka cerewet sama kalian,
+apalagi kalau sibuk main hp pas ibadah,
+tp kaka cerewet bukan karena marah,
+but because i care and want you to grow well.
+next year let’s be more serious, especially about worship and commitment.
+
+kaka percaya kamu bisa jadi lebih,
+as long as you keep walking with God 🤍
+
+I truly believe God is working beautifully in your life.
+jadi jangan ragu, jangan minder, dan jangan ngerasa sendirian.
+we grow, we learn, and we walk together.
+I can’t wait to experience 2026 with you,
+growing, serving, and walking in His plan.
+
+Kamu selalu punya aku sebagai kakak yaa.
+don’t be afraid, i’ve got you
+
+Merry Christmas 🎄` },
+
+"nanda": { template: "templateAunty"},
+"ike": { template: "templateAunty"},
+"maya": { template: "templateAunty"},
+"nana": { template: "templateAunty"},
+"ocke": { template: "templateAunty"},
+"jocke": { template: "templateAunty"},
+"vivi": { template: "templateAunty"},
+"joko": { template: "templateUncle"},
+"ewin": { template: "templateUncle"},
+"erwin": { template: "templateUncle"},
+"jeffry": { template: "templateUncle"},
+"regges": { template: "templateUncle"},
+"egges": { template: "templateUncle"},
+"andre": { template: "templateUncle"},
+"natanael": { template: "templateUncle"},
+"nathanael": { template: "templateUncle"},
+"acho": { template: "templateUncle"},
+"aco": { template: "templateUncle"},
+
+"darrel": { template: "templateAdek", personal: `makasih ya kaka L udh agak berguna dikit selama ini,
+jadi temen cerita, jadi supir, dukun, semua itu lah y.
+tahun depan TOLONG banyak banyak kasih gue gosipan lagi.
+kacamata uniqlo 299rb itu gaada apa apanya dibanding ditulisin surat gini sama gue, bersyukur.
+Merry Christmas 🎄`},
+
+"darren": { template: "templateAdek", personal: `oi jelek makasih ya udh berguna buat gue tahun ini(refill botol minum gue),
+idup yg lama dah ya luuuu, biar gue bisa banyak ketawain JOKES GAK LUCU lu itu.
+sering sering dah lu reply story gue, biar gue keliatan sibuk.
+jangan lupa makan enak.
+Merry Christmas 🎄`},
+
+"obeam": { template: "templateAdek", personal: `selamat natal untuk orang kristen yg paling kristen WKWKWK
+makasih buat jokes freak nya yg masih bisa bikin geli geli perut dikit
+panjang umur ya beam biar gue bisa nyanyi di nikahan lu nanti.
+Merry Christmas 🎄`},
+
+"jashobeam": { template: "templateAdek", personal: `selamat natal untuk orang kristen yg paling kristen WKWKWK
+makasih buat jokes freak nya yg masih bisa bikin geli geli perut dikit
+panjang umur ya beam biar gue bisa nyanyi di nikahan lu nanti.
+Merry Christmas 🎄`},
+
+"tata": { template: "templateAdek", personal: `MY TATITUT! i loveu and i kno u love me.
+makasih ya udh sering menemani aku si imut selama ini
+semaNGAAAAt ketua media 2026! jgn jadwalkan aku sm org rese y (darren)
+ilovyu mmmmUAACH!!
+Merry Christmas 🎄`},
+
+"CAITLIN": { template: "templateAdek", personal: `MY TATITUT! i loveu and i kno u love me.
+makasih ya udh sering menemani aku si imut selama ini
+semaNGAAAAt ketua media 2026! jgn jadwalkan aku sm org rese y (darren)
+ilovyu mmmmUAACH!!
+Merry Christmas 🎄`},
+
+"tasha": { template: "templateAdek", personal: `MY LOVELY BIG SIS!
+selamat natal lagii untuk yang tahun yang kesekian kalinyaa,
+i love BGT punya kakak seperti kamoe, jangan jauh jauh dari aku yah
+ayo kita makan enakkk!!!
+Merry Christmas, love u 🎄`}
+
+};
+
+// ================= FUNGSI TAMPIL =================
+function tampilkanSurat() {
+    const nama = document.getElementById("namaInput").value.trim();
+    const key = nama.toLowerCase();
+    const hasil = document.getElementById("hasil");
+
+    if (dataSurat[key]) {
+        const d = dataSurat[key];
+
+        if (d.template === "templateBTC") {
+            hasil.textContent = templateBTC(nama, d.personal);
+        } else if (d.template === "templateAdek") {
+            hasil.textContent = templateAdek(nama, d.personal);
+        } else if (d.template === "templateAunty") {
+            hasil.textContent = templateAunty(nama);
+        } else if (d.template === "templateUncle") {
+            hasil.textContent = templateUncle(nama);
+        } else {
+            hasil.textContent = templateAkrab(nama);
+        }
+    } else {
+        hasil.textContent = templateAkrab(nama);
+    }
+}
+</script>
+
+</body>
+</html>
